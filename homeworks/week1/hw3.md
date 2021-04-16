@@ -2,12 +2,12 @@
 
 # Command Line 基礎教學 (給 h0w 哥)
 
-### 什麼是 Command Line？
-要知道什麼是 Command Line，首先你要知道 GUI 是什麼。Graphical User Interface (圖形使用者介面) 顧名思義就是以圖形顯示的使用者介面，使用者可以透過圖像化的介面來操控電腦。我們平常使用的 Windows 系統、macOS 系統、瀏覽器、Photoshop 等等能看見圖像並用滑鼠點選按鈕的界面都是 GUI。沒有 GUI 的時候，使用者就必須透過文字來操控電腦，這時我們就必須在 Terminal (終端機) 環境中使用 Command Line (指令列)。
+### 什麼是 CLI？
+要知道什麼是 CLI，首先你要知道 GUI 是什麼。Graphical User Interface (圖形使用者介面) 顧名思義就是以圖形顯示的使用者介面，使用者可以透過圖像化的介面來操控電腦。我們平常使用的 Windows 系統、macOS 系統、瀏覽器、Photoshop 等等能看見圖像並用滑鼠點選按鈕的界面都是 GUI。沒有 GUI 的時候，使用者就必須透過文字來操控電腦，這時我們就必須在 Terminal (終端機) 環境中使用 Command Line (指令列)，而這種介面就叫做 Command Line Interface (CLI)。
 
 > 那為什麼要有 Terminal，如果所有軟體都用 GUI 操作不是很方便嗎？
 
-其實電腦上有各種大大小小的軟體在運作，並不是每一個軟體都需要特別去設計一個 GUI，有時這個軟體只需要完成簡單的任務，只要在 Terminal 裡用幾行指令就可以完成。所以你還是乖乖學怎麼用 Command Line 來操控電腦吧！
+其實電腦上有各種大大小小的軟體在運作，並不是每一個軟體都需要特別去設計一個 GUI，有時這個軟體只需要完成簡單的任務，只要在 Terminal 裡用幾行指令就可以完成。所以你還是乖乖學怎麼用 CLI 來操控電腦吧！
 
 ### 執行環境
 你可以在各種終端機軟體中執行 Command Line，例如 Mac 內建的 Terminal 和 Windows 的命令提示字元。這裡我建議你使用 Git 所附帶的 git-bash，只要在電腦中[安裝 Git](https://git-scm.com/)，系統就會一併安裝這個終端機軟體。
