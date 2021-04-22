@@ -1,10 +1,10 @@
 function reverse(str) {
     var arr = str.split('');
-    var reversedArr = [];
-    for (var i = 1; i<=arr.length; i++){
-        reversedArr[arr.length-i] = arr[i-1];
+    var reversed = [];
+    for (var i = arr.length -1; i >= 0; i--){
+        reversed.push(arr[i]);
     } 
-    console.log(reversedArr.join(''));
+    console.log(reversed.join(''));
 }
 
 reverse('hello');
