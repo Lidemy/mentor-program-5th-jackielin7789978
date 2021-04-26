@@ -4,4 +4,4 @@ function printStars(n) {
     }
 }
 
-printStars(5);
+// printStars(5);

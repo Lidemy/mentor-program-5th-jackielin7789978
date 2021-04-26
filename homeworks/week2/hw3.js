@@ -6,4 +6,4 @@ function reverse(str) {
     console.log(ans);
 }
 
-reverse('hello');
+// reverse('hello');

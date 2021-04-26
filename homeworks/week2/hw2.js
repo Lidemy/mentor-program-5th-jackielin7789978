@@ -1,9 +1,5 @@
 function capitalize(str) {
-    if (str[0] !== str[0].toUpperCase()){
-        return str.replace(str[0], str[0].toUpperCase());
-    }else {
-        return str;
-    }
+    return str.replace(str[0], str[0].toUpperCase());
 }
 
-console.log(capitalize('hello'));
+// console.log(capitalize('hello'));
