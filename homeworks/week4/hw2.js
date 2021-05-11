@@ -3,10 +3,10 @@ const request = require('request')
 const args = process.argv
 const API_ENDPOINT = 'https://lidemy-book-store.herokuapp.com'
 
-const func = args[2]
+const commands = args[2]
 const param = args[3]
 
-switch (func) {
+switch (commands) {
   case 'list':
     listBook()
     break
@@ -48,7 +48,7 @@ function listBook() {
 function readBook(id) {
   request(`${API_ENDPOINT}/books/${id}`, (err, res, body) => {
     if (err) {
-      console.log('讀取失敗', err)
+      return console.log('讀取失敗', err)
     }
     let book
     try {
@@ -57,7 +57,7 @@ function readBook(id) {
       console.log(err)
       return
     }
-    console.log(book)
+    console.log(book.id, book.name)
   })
 }
 
