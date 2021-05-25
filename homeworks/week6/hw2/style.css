@@ -1,0 +1,129 @@
+/* .debug *, .debug {
+  outline: 1px solid gold;
+} */
+html, body{
+  min-height: 100%;
+  font-size: 12px;
+  font-family: "微軟正黑體";
+  line-height: normal;
+}
+
+.required {
+  color: #e74149;
+}
+.form {
+  width: 90%;
+  margin: 18px auto;
+  box-shadow: 0px 1px 5px 1px rgba(0, 0, 0, 0.3);
+}
+.top-bar {
+  height: 10px;
+  width: 100%;
+  margin: auto;
+  background-color: #fad312;
+}
+.form__top , .form__bottom {
+  padding: 0 16px;
+}
+.form__top h1 {
+  font-size: 2.3rem;
+  font-weight: bold;
+  margin: 15px 0px;
+}
+/* 解決 galaxy fold 折行問題 */
+@media (max-width: 280px) {
+  html {
+    font-size: 10px;
+  }
+}
+
+.form__top div {
+  font-size: 1.1rem;
+  margin-bottom: 10px;
+}
+.form__top p {
+  font-size: 1.2rem;
+}
+
+.question {
+  padding: 0 16px;
+  margin: 40px 0 20px;
+}
+.question input {
+  margin-top: 24px;
+  width: 80%;
+}
+textarea {
+  width: 80%;
+}
+
+input[type=radio] {
+  width: unset;
+  margin-top: 24px;
+}
+label {
+  font-size: 1.3rem;
+}
+
+.question__title {
+  font-size: 1.6rem;
+}
+.question p {
+  font-size: 1rem;
+  margin: 4px 0 10px;
+}
+
+.form__bottom input {
+  padding: 8px 24px;
+  background-color: #fad312;
+  border: 2px solid transparent;
+  border-radius: 3px;
+  font-size: 1.2rem; 
+  transition: 0.2s;
+}
+.form__bottom input:hover {
+  background-color: rgba(250, 211, 18, 0.9);
+  color: rgba(16, 16, 16, 0.9);
+  box-shadow: 1px 3px 6px 1px rgba(235, 226, 186, 0.884);
+  cursor: pointer;
+}
+
+.form__bottom p {
+  font-size: 1rem;
+  margin-top: 10px;
+  padding-bottom: 20px;
+}
+
+footer {
+  height: 60px;
+  font-size: 0.8rem;
+  width: 100%;
+  background-color: #000;
+  color: #999999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@media (min-width: 768px) {
+  html, body {
+    font-size: 14px;
+  }
+  .form {
+    max-width: 645px;
+    margin: 48px auto;
+  }
+  .question {
+    padding: 0 40px;
+    margin: 60px 0px 30px;
+  }
+  .form__top , .form__bottom {
+    padding: 0 40px;
+  }
+  .form__top {
+    margin-top: 40px;
+  }
+  .form__bottom {
+    padding-bottom: 20px;
+  }
+}
