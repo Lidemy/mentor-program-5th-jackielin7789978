@@ -1,9 +1,3 @@
-/* .debug *, .debug {
-  outline: 1px solid gold;
-} */
-.EN {
-  font-family: Questrial;
-}
 body {
   font-size: 0;
 }
@@ -25,6 +19,9 @@ body {
   display: inline-block;
   padding-left: 15px;
   margin-top: 40px;
+}
+.EN {
+  font-family: Questrial;
 }
 
 /* Header */
