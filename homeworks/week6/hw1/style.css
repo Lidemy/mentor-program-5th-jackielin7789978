@@ -66,7 +66,7 @@ body {
   justify-content: center;
   align-items: center;
   position: relative;
-  height: 480px;
+  height: 580px;
   background: url(./banner.png) no-repeat center/cover;
 }
 .banner::after {
@@ -89,7 +89,7 @@ body {
 /* main content */
 .section__desc {
   font-size: 18px;
-  line-height: 2em;
+  line-height: 4em;
   margin: 40px 0px;
 }
 
@@ -157,7 +157,7 @@ body {
 }
 .review-box__comment {
   margin-top: 90px;
-  padding-bottom: 16px;
+  padding-bottom: 36px;
   font-size: 16px;
   line-height: normal;
 }
