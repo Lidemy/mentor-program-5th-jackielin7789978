@@ -1,8 +1,20 @@
+* {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+
 html, body{
   min-height: 100%;
-  font-size: 16px;
+  font-size: 12px;
   font-family: "微軟正黑體";
   line-height: normal;
+}
+body {
+  background-color: rgba(0, 0, 0, 0.3);
 }
 
 .required {
@@ -11,6 +23,7 @@ html, body{
 .form {
   width: 90%;
   margin: 18px auto;
+  background-color: #fff;
   box-shadow: 0px 1px 5px 1px rgba(0, 0, 0, 0.3);
 }
 .top-bar {
@@ -27,12 +40,6 @@ html, body{
   font-weight: bold;
   margin: 15px 0px;
 }
-/* 解決 galaxy fold 折行問題 */
-@media (max-width: 280px) {
-  html {
-    font-size: 10px;
-  }
-}
 
 .form__top div {
   font-size: 1.1rem;
@@ -48,10 +55,20 @@ html, body{
 }
 .question input {
   margin-top: 24px;
-  width: 80%;
+  width: 75%;
+  border: solid 1px #d0d0d0;
+  padding-left: 0;
+  padding-bottom: 0;
+  padding-top: 4px;
 }
 textarea {
-  width: 80%;
+  width: 90%;
+  resize: none;
+  border: solid 1px #d0d0d0;
+}
+::placeholder {
+  color: #afafaf;
+  font-size: 1.3rem;
 }
 
 input[type=radio] {
@@ -92,9 +109,15 @@ label {
 }
 
 footer {
+  width: 100%;
+}
+.footer__top-bar {
+  height: 3px;
+  background-color: #fad312;
+}
+.footer__bottom {
   height: 60px;
   font-size: 0.8rem;
-  width: 100%;
   background-color: #000;
   color: #999999;
   display: flex;
@@ -108,11 +131,17 @@ footer {
   }
   .form {
     max-width: 645px;
-    margin: 48px auto;
+    margin: 120px auto 48px;
   }
   .question {
     padding: 0 40px;
     margin: 60px 0px 30px;
+  }
+  .question input {
+    width: 50%;
+  }
+  input[type=radio] {
+    width: unset;
   }
   .form__top , .form__bottom {
     padding: 0 40px;
@@ -122,5 +151,11 @@ footer {
   }
   .form__bottom {
     padding-bottom: 20px;
+  }
+}
+/* 解決 galaxy fold 折行問題 */
+@media (max-width: 280px) {
+  html {
+    font-size: 10px;
   }
 }
