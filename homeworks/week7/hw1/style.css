@@ -1,0 +1,172 @@
+* {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+html, body{
+  min-height: 100%;
+  font-size: 12px;
+  font-family: "微軟正黑體";
+  line-height: normal;
+}
+body {
+  background-color: rgba(0, 0, 0, 0.3);
+}
+.warning {
+  color: #e74149;
+  margin-top: 6px;
+}
+.hidden {
+  visibility: hidden;
+}
+
+.star {
+  color: #e74149;
+  font-size: 1.6rem;
+  margin: 4px 0 10px;
+}
+.form {
+  width: 90%;
+  margin: 18px auto;
+  background-color: #fff;
+  box-shadow: 0px 1px 5px 1px rgba(0, 0, 0, 0.3);
+}
+.top-bar {
+  height: 10px;
+  width: 100%;
+  margin: auto;
+  background-color: #fad312;
+}
+.form__top , .form__bottom {
+  padding: 0 16px;
+}
+.form__top h1 {
+  font-size: 2.3rem;
+  font-weight: bold;
+  margin: 15px 0px;
+}
+
+.form__top div {
+  font-size: 1.1rem;
+  margin-bottom: 10px;
+}
+.form__top p {
+  font-size: 1.2rem;
+}
+
+.question {
+  padding: 0 16px;
+  margin: 40px 0 20px;
+}
+.question__title {
+  display: inline-block;
+  font-size: 1.6rem;
+}
+.question input {
+  display: block;
+  margin-top: 24px;
+  width: 75%;
+  border: solid 1px #d0d0d0;
+  padding-left: 0;
+  padding-bottom: 0;
+  padding-top: 4px;
+}
+
+.question p {
+  font-size: 1rem;
+  margin: 4px 0 10px;
+}
+textarea {
+  width: 90%;
+  resize: none;
+  border: solid 1px #d0d0d0;
+}
+::placeholder {
+  color: #afafaf;
+  font-size: 1.3rem;
+}
+
+input[type=radio] {
+  display: inline-block;
+  width: unset;
+  margin-top: 24px;
+}
+label {
+  font-size: 1.3rem;
+}
+
+.form__bottom input {
+  padding: 8px 24px;
+  background-color: #fad312;
+  border: 2px solid transparent;
+  border-radius: 3px;
+  font-size: 1.2rem; 
+  transition: 0.2s;
+}
+.form__bottom input:hover {
+  background-color: rgba(250, 211, 18, 0.9);
+  color: rgba(16, 16, 16, 0.9);
+  box-shadow: 1px 3px 6px 1px rgba(235, 226, 186, 0.884);
+  cursor: pointer;
+}
+
+.form__bottom p {
+  font-size: 1rem;
+  margin-top: 10px;
+  padding-bottom: 20px;
+}
+
+footer {
+  width: 100%;
+}
+.footer__top-bar {
+  height: 3px;
+  background-color: #fad312;
+}
+.footer__bottom {
+  height: 60px;
+  font-size: 0.8rem;
+  background-color: #000;
+  color: #999999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@media (min-width: 768px) {
+  html, body {
+    font-size: 14px;
+  }
+  .form {
+    max-width: 645px;
+    margin: 120px auto 48px;
+  }
+  .question {
+    padding: 0 40px;
+    margin: 40px 0px 30px;
+  }
+  .question input {
+    width: 50%;
+  }
+  input[type=radio] {
+    width: unset;
+  }
+  .form__top , .form__bottom {
+    padding: 0 40px;
+  }
+  .form__top {
+    margin-top: 40px;
+  }
+  .form__bottom {
+    padding-bottom: 20px;
+  }
+}
+/* 解決 galaxy fold 折行問題 */
+@media (max-width: 280px) {
+  html {
+    font-size: 10px;
+  }
+}
