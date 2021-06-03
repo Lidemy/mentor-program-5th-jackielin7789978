@@ -1,0 +1,109 @@
+* {
+	margin: 0;
+	padding: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+body {
+  background-color: #E2DFE2;
+}
+html, body {
+  font-size: 14px;
+  font-family: 'Rubik', sans-serif;
+}
+
+.page-header {
+  height: 40vh;
+  background-color: #1B4965;
+}
+.app {
+  position: absolute;
+  top: 8vh;
+  left: 0;
+  right: 0;
+  max-width: 600px;
+  margin: 0 auto;
+}
+.app__title {
+  margin-bottom: 5vh;
+  color: whitesmoke;
+  font-size: 4rem;
+}
+.app__input-box, .app__todo {
+  background-color: whitesmoke;
+}
+.app__input-box input, .app__todo {
+  padding: 24px 14px;
+}
+.app__input-box {
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+  width: 100%;
+  display: flex;
+}
+input {
+  border: none;
+  background-color: whitesmoke;
+  color: #444;
+}
+.app__input-box input {
+  width: 90%;
+  flex: 1;
+}
+input:focus {
+  outline: none;
+}
+.app__todo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1.2rem;
+  transition: all 0.2s;
+}
+.app__todo:hover {
+  transform: translate(0.5px, -1px);
+  border-bottom: 2px solid rgb(27, 73, 101);
+}
+.wrapper {
+  display: flex;
+}
+.app__todo__taskname {
+  flex-wrap: wrap;
+  color: #444;
+  cursor: pointer;
+}
+.btn-remove, .btn-add {
+  padding: 2px 4px;
+  cursor: pointer;
+  background-color: transparent;
+  color: #777;
+  border: none;
+  transition: all 0.2s;
+}
+.btn-add {
+  margin-right: 12px;
+}
+.btn-remove {
+  font-size: 1.1rem;
+}
+.btn-remove:hover, .btn-add:hover {
+  color: #222;
+}
+
+/* completed tasks */
+.checked .app__todo__taskname {
+  text-decoration: line-through;
+  color: rgba(119, 119, 119, 0.4);
+}
+.checked .btn-remove {
+  font-size: 1.1rem;
+  color: rgba(119, 119, 119, 0.4);
+}
+.hide {
+  display: none;
+}
+/* edit mode */
+.app__todo__taskname--edit {
+  color: #8f8f8f;
+}
