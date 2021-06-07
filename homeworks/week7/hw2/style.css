@@ -12,6 +12,9 @@ ol, ul {
 body, html {
   font-size: 16px;
 }
+body {
+  min-height: 100vh;
+}
 /* 共用 class */
 .wrapper {
   max-width: 1980px;
@@ -23,19 +26,21 @@ body, html {
   text-align: center;
   margin-top: 40px;
 }
+.section.wrapper {
+  min-height: 980px;
+}
 .section__title {
   font-size: 2.2rem;
   font-weight: bold;
   border-left: 15px solid #a3dea2;
   display: inline-block;
   padding-left: 15px;
-  margin-top: 40px;
+  margin: 40px 0;
 }
 .EN {
   font-family: Questrial;
 }
 
-/* Header */
 .navbar {
   box-shadow: -1.4px -1.4px 6px 0 #97a2a0;
 }
@@ -73,114 +78,53 @@ body, html {
   background-color: #ff7286;
 }
 
-.banner {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-  height: 580px;
-  background: url(./banner.png) no-repeat center/cover;
+/* 問答區 */
+.openall {
+  max-width: 810px;
+  margin: auto;
+  text-align: right;
 }
-.banner::after {
-  content: '';
-  position: absolute;
-  background: rgba(0, 0, 0, 0.2);
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-}
-.banner h1 {
-  font-size: 3.7rem;
-  font-weight: bold;
-  color: #fff;
-  position: relative;
-  z-index: 2;
-}
-
-/* main content */
-.section__desc {
-  font-size: 1.1rem;
-  line-height: 4em;
-  margin: 40px 0px;
-}
-
-.buttons {
-  margin: 60px 0px 80px; 
-}
-.btn-order, .btn-query {
-  text-decoration: none;
-  color: #3e613d;
-  font-size: 2.2rem;
-  font-weight: bold;
-  padding: 62px 80px;
-  display: inline-block;
-  border-radius: 10px;
+.openall label {
   cursor: pointer;
-  transition: 0.2s;
-  margin: 10px;
 }
-.btn-order:hover, .btn-query:hover {
-  transform: scale(1.1);
-}
-.btn-order {
-  background-color: #a8e8e1;
-}
-.btn-query {
-  background-color: #f9f9b5;
-}
-
-.section__images {
+.question {
+  max-width: 810px;
+  margin: auto;
   display: flex;
-  margin-top: 40px;
+  justify-content: flex-start;
+  text-align: left;
+  padding: 20px;
+  border-bottom: 2px solid #a6e2c0;
 }
-.section__images div {
-  width: 25%;
-  padding: 0;
+.question__num {
+  display: inline-block;
+  font-size: 1.5rem;
+  color: #70b282;
+  padding: 8px 4px;
 }
-.section__images img {
-  width: 100%;
+.question-box {
+  display: inline-block;
 }
 
-.review-box-wrapper {
-  display: flex;
-  margin-top: 80px;
+.question__title {
+  font-size: 1.1rem;
+  padding: 8px;
 }
-.review-box {
-  flex: 1;
-  border: solid 1px #c7e5ec;
-  border-radius: 5px;
-  box-shadow: -1.4px -1.4px 4px #d8eaef;
-  padding: 0px 20px;
-  position: relative;
+.question__title:hover {
+  cursor: pointer;
 }
-.review-box + .review-box {
-  margin-left: 16px;
-}
-.review-box__avatar {
-  position: absolute;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-.review-box p {
-  position: relative;
-  top: 60px;
+.question__answer {
+  transition: all 0.5s;
   font-size: 1rem;
+  padding: 16px 8px;
+  line-height: 2em;
 }
-.review-box__comment {
-  margin-top: 90px;
-  padding-bottom: 36px;
-  font-size: 1rem;
-  line-height: normal;
-}
-
-.map-margin {
-  margin-top: 40px;
+.hide-answer {
+  display: none;
 }
 
-/* footer */
 .footer__top {
-  margin-top: 40px;
+  margin-top: 50px;
   padding: 32px 0px;
   background-color: #e8efee;
 }
@@ -201,7 +145,6 @@ body, html {
   font-size: 0.9rem;
 }
 .footer__bottom {
-  height: 48px;
   background-color: #35564b;
   color: #fff;
   font-size: 1rem;
@@ -210,16 +153,12 @@ body, html {
   align-items: center;
 }
 .footer__bottom div {
-  padding: 6px 0px;
+  padding: 12px 0px;
 }
 
-/* RWD for tablets and mobile phones*/
 @media (max-width: 768px) {
   body, html {
     font-size: 14px;
-  }
-  .banner h1 {
-    font-size: 42px;
   }
   .wrapper {
     margin: 0 auto;
@@ -253,51 +192,13 @@ body, html {
     background-color: #ff7286;
     color: #fff;
   }
-
-  .section__desc {
-    font-size: 1.1rem;
-    line-height: 2em;
-    margin: 40px 0px;
-  }
-
-  .buttons {
-    padding: 0;
-    margin-bottom: 60px;
-  }
-
-  .btn-order, .btn-query {
-    text-decoration: none;
-    color: #3e613d;
-    font-size: 2rem;
-    font-weight: bold;
-    padding: 40px 60px;
-    display: inline-block;
-    border-radius: 10px;
-    cursor: pointer;
-    transition: 0.2s;
-    margin: 10px;
-  }
-
-  .section__images {
-    font-size: 0;
-    flex-direction: column;
-  }
-  .section__images div {
+  .openall {
     width: 100%;
   }
-  .section .wrapper {
-    margin: 0;
-    padding: 0;
+  .question {
+    width: 100%;
+    padding: 20px 0;
   }
-
-  .review-box-wrapper {
-    flex-direction: column;
-  }
-  .review-box + .review-box {
-    margin-left: 0px;
-    margin-top: 80px;
-  }
-
   .footer__top {
     margin-top: 20px;
     padding: 26px 0px;
@@ -317,4 +218,7 @@ body, html {
     flex-direction: column;
     padding: 4px 0px;
   }
+}
+@media (max-width: 280px) {
+
 }
