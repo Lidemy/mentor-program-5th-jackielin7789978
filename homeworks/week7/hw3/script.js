@@ -1,10 +1,3 @@
-function capitalizeFirst(str) {
-  let result = str[0].toUpperCase()
-  for (let i = 1; i < str.length; i++) {
-    result += str[i]
-  }
-  return result
-}
 document.addEventListener('DOMContentLoaded', () => {
   // 新增項目
   const form = document.querySelector('.app__input-box')
@@ -13,7 +6,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const div = document.createElement('div')
     const input = form.querySelector('input')
     if (!input.value) return
-    const newInput = capitalizeFirst(input.value)
     div.innerHTML = `
     <div class="app__todo">
       <div class="wrapper">
@@ -35,11 +27,8 @@ document.addEventListener('DOMContentLoaded', () => {
 `
     document.querySelector('.app__todos').append(div)
     const tasknames = document.querySelectorAll('.app__todo__taskname')
-    for (const taskname of tasknames) {
-      if (!taskname.innerText) {
-        taskname.innerText = newInput
-      }
-    }
+    const last = tasknames[tasknames.length - 1]
+    last.innerText = input.value
     input.value = ''
   })
   // 加上刪除和勾選的功能
@@ -60,12 +49,12 @@ document.addEventListener('DOMContentLoaded', () => {
     if (e.target.classList.contains('app__todo__taskname')) {
       const taskname = e.target
       const inputEdit = e.target.nextSibling.nextSibling.firstChild.nextSibling
-      inputEdit.setAttribute('value', `${capitalizeFirst(taskname.innerText)}`)
+      inputEdit.setAttribute('value', `${taskname.innerText}`)
       taskname.classList.add('hide')
       inputEdit.classList.remove('hide')
       inputEdit.parentNode.addEventListener('submit', (e) => {
         e.preventDefault()
-        taskname.innerText = capitalizeFirst(inputEdit.value)
+        taskname.innerText = inputEdit.value
         taskname.classList.remove('hide')
         inputEdit.classList.add('hide')
       })

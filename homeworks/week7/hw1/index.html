@@ -9,7 +9,7 @@
 </head>
 <body">
   <form class="form">
-    <div class="top-bar"></div>
+    <div class="form__topbar"></div>
     <div class="form__top">
       <h1>新拖延運動報名表單</h1>
       <div>
@@ -18,48 +18,42 @@
       </div>
       <p class="star">*必填</p>
     </div>
-    <div class="question">
+    <div class="question required short-answer">
       <h3 class="question__title">暱稱</h3>
       <span class="star"> *</span>
-      <div class="Q shortAnswer">
-        <input class="inputs" type="text" placeholder="您的回答">
-      </div>
-      <div class="warning hidden">此欄位不得留空</div>
+      <input type="text" placeholder="您的回答">
+      <div class="warning hide">此欄位不得留空</div>
     </div>
-    <div class="question">
+    <div class="question required short-answer">
       <h3 class="question__title">電子郵件</h3>
       <span class="star"> *</span>
-      <div class="Q shortAnswer">
-        <input class="inputs" type="email" placeholder="您的電子郵件">
-      </div>
-      <div class="warning hidden">此欄位不得留空</div>
+      <input type="email" placeholder="您的電子郵件">
+      <div class="warning hide">此欄位不得留空</div>
     </div>
-    <div class="question">
+    <div class="question required short-answer">
       <h3 class="question__title">手機號碼</h3>
       <span class="star"> *</span>
-      <div class="Q shortAnswer">
-        <input class="inputs" type="text" placeholder="您的手機號碼">
-      </div>
-      <div class="warning hidden">此欄位不得留空</div>
+      <input type="number" placeholder="您的手機號碼">
+      <div class="warning hide">此欄位不得留空</div>
     </div>
-    <div class="question">
+    <div class="question required radio">
       <h3 class="question__title">報名類型</h3>
       <span class="star"> *</span>
-      <div class="Q radio">
-        <input type="radio" id="radio1-1" name="radio1">
-        <label for="radio1-1">躺在床上用想像力實作</label><br>
-        <input type="radio" id="radio1-2" name="radio1">
-        <label for="radio1-2">趴在地上滑手機找現成的</label><br>
+      <div>
+        <label for="radio1-1">
+          <input type="radio" id="radio1-1" name="radio1"> 躺在床上用想像力實作
+        </label><br>
+        <label for="radio1-2">
+          <input type="radio" id="radio1-2" name="radio1"> 趴在地上滑手機找現成的
+        </label><br>
+        <div class="warning hide">請選取一個選項</div>
       </div>
-      <div class="warning hidden">請選取一個選項</div>
     </div>
-    <div class="question">
+    <div class="question required short-answer">
       <h3 class="question__title">怎麼知道這個活動的？</h3>
       <span class="star"> *</span>
-      <div class="Q shortAnswer">
-        <input class="inputs" type="text" placeholder="您的回答">
-      </div>
-      <div class="warning hidden">此欄位不得留空</div>
+      <input type="text" placeholder="您的回答">
+      <div class="warning hide">此欄位不得留空</div>
     </div>
     <div class="question">
       <label for="textarea" class="question__title">其他</label>

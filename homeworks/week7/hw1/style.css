@@ -7,19 +7,20 @@
 	vertical-align: baseline;
 }
 html, body{
-  min-height: 100%;
   font-size: 12px;
   font-family: "微軟正黑體";
   line-height: normal;
 }
 body {
   background-color: rgba(0, 0, 0, 0.3);
+  position: relative;
+  padding: 20px 0px 80px;
 }
 .warning {
   color: #e74149;
   margin-top: 6px;
 }
-.hidden {
+.hide {
   visibility: hidden;
 }
 
@@ -30,11 +31,11 @@ body {
 }
 .form {
   width: 90%;
-  margin: 18px auto;
+  margin: auto;
   background-color: #fff;
   box-shadow: 0px 1px 5px 1px rgba(0, 0, 0, 0.3);
 }
-.top-bar {
+.form__topbar {
   height: 10px;
   width: 100%;
   margin: auto;
@@ -121,6 +122,8 @@ label {
 
 footer {
   width: 100%;
+  position: absolute;
+  bottom: 0;
 }
 .footer__top-bar {
   height: 3px;
@@ -140,9 +143,11 @@ footer {
   html, body {
     font-size: 14px;
   }
+  body {
+    padding: 60px 0px 120px;
+  }
   .form {
     max-width: 645px;
-    margin: 120px auto 48px;
   }
   .question {
     padding: 0 40px;

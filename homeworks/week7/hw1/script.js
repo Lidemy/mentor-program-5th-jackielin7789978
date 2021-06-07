@@ -1,43 +1,43 @@
+function toggleWarning(element, boolean) {
+  if (boolean === true) {
+    element.querySelector('.warning').classList.remove('hide')
+  } else {
+    element.querySelector('.warning').classList.add('hide')
+  }
+}
 document.addEventListener('DOMContentLoaded', () => {
   document.querySelector('.form').addEventListener('submit', (e) => {
+    e.preventDefault()
     let hasError = false
     const values = []
     // 處理必填問題
-    const elements = document.querySelectorAll('.Q')
-    for (const element of elements) {
+    const requiredQuestions = document.querySelectorAll('.required')
+    for (const requiredQuestion of requiredQuestions) {
       // 簡答題
-      if (element.classList.contains('shortAnswer')) {
-        const input = element.firstChild.nextSibling
+      if (requiredQuestion.classList.contains('short-answer')) {
+        const input = requiredQuestion.querySelector('input')
         if (!input.value) {
-          element.nextSibling.nextSibling.classList.remove('hidden')
+          toggleWarning(requiredQuestion, true)
           hasError = true
         } else {
-          element.nextSibling.nextSibling.classList.add('hidden')
-          const temp = element.previousSibling.previousSibling
-          const title = temp.previousSibling.previousSibling.innerText
-          values.push(`${title}：${input.value}`)
+          toggleWarning(requiredQuestion, false)
+          values.push(`${requiredQuestion.querySelector('.question__title').innerText}：${input.value}`)
         }
       }
       // 單選題
-      if (element.classList.contains('radio')) {
-        const radios = element.querySelectorAll('input')
-        const hasCheck = [...radios].some((radio) => radio.checked)
-        if (!hasCheck) {
-          element.nextSibling.nextSibling.classList.remove('hidden')
+      if (requiredQuestion.classList.contains('radio')) {
+        const checked = requiredQuestion.querySelector('input[type=radio]:checked')
+        if (!checked) {
+          toggleWarning(requiredQuestion, true)
           hasError = true
         } else {
-          element.nextSibling.nextSibling.classList.add('hidden')
-          const temp = element.previousSibling.previousSibling
-          const title = temp.previousSibling.previousSibling.innerText
-          const checked = [...radios].filter((radio) => radio.checked)
-          const checkedValue = checked[0].nextSibling.nextSibling.innerText
-          values.push(`${title}：${checkedValue}`)
+          toggleWarning(requiredQuestion, false)
+          values.push(`${requiredQuestion.querySelector('.question__title').innerText}：${checked.parentNode.innerText}`)
         }
       }
     }
     // 處理最後一題
     const other = document.querySelector('textarea')
-    console.log(other)
     if (other.value) {
       const otherTitle = document.querySelector('label[for=textarea]').innerText
       values.push(`${otherTitle}：${other.value}`)
@@ -49,10 +49,6 @@ document.addEventListener('DOMContentLoaded', () => {
       ${data}
       `
     }
-    if (hasError === true) {
-      e.preventDefault()
-    } else {
-      alert(userInputs)
-    }
+    hasError ? e.preventDefault() : alert(userInputs)
   })
 })
