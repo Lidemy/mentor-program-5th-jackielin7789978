@@ -16,7 +16,6 @@ document.addEventListener('DOMContentLoaded', () => {
         </div>
       </div>
     </a>`
-  let offset = 0
   // 先抓到前五個遊戲，然後把遊戲名稱 append 到選單上，接著呼叫 changeGame 函示載入第一個遊戲的實況頁面
   getGames((games) => {
     for (const game of games) {
@@ -28,18 +27,21 @@ document.addEventListener('DOMContentLoaded', () => {
   })
   // 點擊遊戲名稱即可呼叫 changeGame 改變實況頁面
   document.querySelector('.header__top-games').addEventListener('click', (e) => {
-    offset = 0
-    changeGame(e.target.innerText)
+    const target = e.target.innerText
+    const currentGame = document.querySelector('h1').innerText
+    if (target !== currentGame) {
+      changeGame(e.target.innerText)
+    }
   })
   // 點擊「載入更多」即可呼叫 changeGame 改變實況頁面
   document.querySelector('.more-btn').addEventListener('click', () => {
     const gamename = document.querySelector('h1').innerText
-    offset += 20
+    const currentStreamsNum = document.querySelectorAll('.stream').length
     // Twitch API 的 offset 參數上限值為 900，超過之後就隱藏按鈕
-    if (offset > 900) {
+    if (currentStreamsNum > 900) {
       document.querySelector('.more-btn').classList.add('hide')
     } else {
-      getStreams(gamename, `limit=20&offset=${offset}`, (streams) => {
+      getStreams(gamename, `limit=20&offset=${currentStreamsNum}`, (streams) => {
         for (const stream of streams) {
           appendStream(stream)
         }
@@ -53,7 +55,12 @@ document.addEventListener('DOMContentLoaded', () => {
     request.setRequestHeader('Accept', 'application/vnd.twitchtv.v5+json')
     request.onload = () => {
       if (request.status >= 200 && request.status < 400) {
-        const games = JSON.parse(request.response).top
+        let games
+        try {
+          games = JSON.parse(request.response).top
+        } catch (e) {
+          console.log('error')
+        }
         callback(games)
       }
     }
@@ -69,24 +76,28 @@ document.addEventListener('DOMContentLoaded', () => {
     request.setRequestHeader('Accept', 'application/vnd.twitchtv.v5+json')
     request.onload = () => {
       if (request.status >= 200 && request.status < 400) {
-        callback(JSON.parse(request.response).streams)
-      } else {
-        console.log('error')
+        let streams
+        try {
+          streams = JSON.parse(request.response).streams
+        } catch (e) {
+          console.log('error')
+        }
+        callback(streams)
       }
     }
     request.onerror = () => console.log('error')
     request.send()
   }
   function appendStream(stream) {
-    const preview = stream.preview.template
-    const preivewSize = preview.replace('{width}', '360').replace('{height}', '220')
     const a = document.createElement('a')
+    const { url, logo, status, displayName } = stream.channel
+    const { preview } = stream
     a.innerHTML = streamTemplate
-      .replace('$URL', stream.channel.url)
-      .replace('$preview', preivewSize)
-      .replace('$avatar', stream.channel.logo)
-      .replace('$status', stream.channel.status)
-      .replace('$name', stream.channel.display_name)
+      .replace('$URL', url)
+      .replace('$preview', preview.medium)
+      .replace('$avatar', logo)
+      .replace('$status', status)
+      .replace('$name', displayName)
     document.querySelector('.streams').append(a)
   }
   function changeGame(gamename) {

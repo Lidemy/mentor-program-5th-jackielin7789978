@@ -24,7 +24,7 @@ header {
   background-color: #fff;
   box-shadow: 1.4px 1.4px 6px 0 #97a2a0;
 }
-.header-wrapper {
+.header__wrapper {
   height: 100%;
   max-width: 2400px;
   margin: 0 auto;
