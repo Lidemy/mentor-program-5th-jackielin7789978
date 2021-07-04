@@ -25,7 +25,6 @@
     <div class="board">
       <?php if (!empty($_SESSION['username'])) { ?>
         <div class="board__nav">
-          <a href="register.php">註冊</a>
           <a href="logout.php">登出</a>
         </div>
       <?php }else { ?>
@@ -40,8 +39,8 @@
           $msg = '';
           if ($_GET['errCode'] == '1') {
             $msg = '錯誤：請輸入留言內容';
-            echo('<h3 class="error">' . $msg . '</h3>');
           }
+          echo('<h3 class="error">' . $msg . '</h3>');
         }
       ?>
       <?php if (!empty($_SESSION['username'])) { ?>

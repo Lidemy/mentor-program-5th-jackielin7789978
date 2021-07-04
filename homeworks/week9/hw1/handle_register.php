@@ -1,4 +1,5 @@
 <?php
+  session_start();
   require_once("conn.php");
 
   //表單驗證
@@ -11,8 +12,19 @@
     die('錯誤');
   }
 
-  //把會員資料存進資料庫
+  //檢查 Username 是否重複
   $username = $_POST['username'];
+  $sql = sprintf(
+    "SELECT username FROM jackie_users WHERE username='%s'",
+    $username
+  );
+  $result = $conn->query($sql);
+  if ($result->num_rows) {
+    header("Location: register.php?errCode=4");
+    die("錯誤");
+  }
+
+  //把會員資料存進資料庫
   $password = $_POST['password'];
   $nickname = $_POST['nickname'];
   $sql = sprintf(
@@ -23,5 +35,7 @@
   if (!$result) {
     die($conn->error);
   }
+
+  $_SESSION['username'] = $username;
   header("Location: index.php");
 ?>

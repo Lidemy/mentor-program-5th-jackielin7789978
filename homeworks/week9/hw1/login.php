@@ -16,17 +16,17 @@
       </div>
       <h1 class="board__title">登入會員</h1>
       <?php
-        if ($_GET) {
-          $msg = '';
-          if ($_GET['errCode'] == '2') {
+        $msg = '';
+        $errCode = $_GET['errCode'];
+        switch ($errCode) {
+          case '2':
             $msg = '錯誤：資料不齊全';
-            echo('<h3 class="error">' . $msg . '</h3>');
-          }
-          if ($_GET['errCode'] == '3') {
+            break;
+          case '3':
             $msg = '錯誤：帳號或密碼有誤';
-            echo('<h3 class="error">' . $msg . '</h3>');
-          }
+            break;
         }
+        echo('<h3 class="error">' . $msg . '</h3>');
       ?>
       <form class="board__form" method="POST" action="handle_login.php">
         <div>帳號：<input name="username" type="text"></div>

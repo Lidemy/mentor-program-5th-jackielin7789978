@@ -16,13 +16,17 @@
       </div>
       <h1 class="board__title">註冊會員</h1>
       <?php
-        if ($_GET) {
-          $msg = '';
-          if ($_GET['errCode'] == '2') {
+        $msg = '';
+        $errCode = $_GET['errCode'];
+        switch ($errCode) {
+          case '2':
             $msg = '錯誤：資料不齊全';
-            echo('<h3 class="error">' . $msg . '</h3>');
-          }
+            break;
+          case '4':
+            $msg = '錯誤：此帳號已被註冊';
+            break;
         }
+        echo('<h3 class="error">' . $msg . '</h3>');
       ?>
       <form class="board__form" method="POST" action="handle_register.php">
         <div>帳號：<input name="username" type="text"></div>
