@@ -42,4 +42,16 @@
   function is_suspended($user) {
     return $user['role'] === "停權使用者";
   }
+
+  function get_current_admin_num() {
+    global $conn;
+    $sql = "select * from jackie_users where role=?";
+    $stmt = $conn->prepare($sql);
+    $row = "管理員";
+    $stmt->bind_param('s', $row);
+    $result = $stmt->execute();
+    $result = $stmt->get_result();
+    $admin_num = $result->num_rows;
+    return $admin_num;
+  }
 ?>

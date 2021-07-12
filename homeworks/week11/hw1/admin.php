@@ -43,6 +43,19 @@
         <a href="index.php">回留言板</a>
       </div>
       <h1 class="board__title">後台 | 管理使用者</h1>
+      <?php
+        // 處理 errCode
+        if (!empty($_GET['errCode'])) {
+          $msg = '';
+          $errCode = $_GET['errCode'];
+          switch($errCode) {
+            case '1':
+              $msg = '管理員數量不能少於 1';
+              break;
+          }
+          echo('<h3 class="error">' . $msg . '</h3>');
+        }
+      ?>
       <section class="users">
       <?php while ($row = $result->fetch_assoc()) { ?>
         <div class="users__card">
