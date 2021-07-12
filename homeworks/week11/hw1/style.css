@@ -1,0 +1,245 @@
+* {
+  box-sizing: border-box;
+}
+select, button {
+  margin: 0;
+  padding: 0;
+}
+form {
+  display: inline-block;
+}
+body {
+  font-size: 16px;
+  margin: 0;
+  background: #f7f7f7;
+}
+.warning {
+  text-align: center;
+  background: #ffc4c6;
+  color: #a20606;
+  padding: 10px;
+  font-size: 1rem;
+}
+.error {
+  color: red;
+}
+.hide {
+  display: none;
+}
+.line {
+  background: rgb(220, 220, 220);
+  height: 2px;
+  width: 98%;
+  margin: 20px auto;
+}
+
+/* 前台 */
+.board {
+  width: 100%;
+  max-width: 700px;
+  margin: 40px auto;
+  background-color: #fff;
+  position: relative;
+  padding: 10px;
+}
+.board__title {
+  font-size: 2rem;
+}
+.board__nav {
+  position: absolute;
+  top: 20px;
+  right: 10px;
+}
+.board__nav a {
+  text-decoration: none;
+  padding: 8px 16px;
+  margin-left: 8px;
+  border: 1px solid #a0cbf3;
+  border-radius: 4px;
+  color: #555;
+  transition: all 0.2s;
+  font-size: 1rem;
+}
+.board__nav a:hover {
+  cursor: pointer;
+  background-color: #a0cbf3;
+  border: 1px solid #a0cbf3;
+  color: #fff;
+}
+.board textarea {
+  width: 100%;
+  resize: none;
+  border: 1px solid #a0cbf3;
+  border-radius: 4px;
+  padding: 8px;
+  font-size: 1rem;
+}
+.board textarea:focus {
+  outline: none;
+}
+.board__form {
+  display: block;
+}
+.board__form input, .board__update-nickname-form input {
+  border: none;
+  border-bottom: 1px solid #555;
+  margin: 8px 0px;
+  font-size: 1rem;
+}
+.board__form input:focus, .board__update-nickname-form input:focus {
+  outline: none;
+}
+.board__submit-btn {
+  display: block;
+  font-size: 1rem;
+  padding: 8px 20px;
+  border: 1px solid #a0cbf3;
+  background: #fff;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s;
+  margin-top: 16px;
+}
+.board__submit-btn:hover {
+  transform: scale(1.05);
+}
+.card, .users__card{
+  margin: 40px 0px;
+  display: flex;
+  font-size: 1rem;
+  position: relative;
+}
+.card__avatar, .users__card__avatar {
+  min-width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: #b9dcfc;
+  margin-right: 10px;
+}
+.card__info {
+  max-width: 480px;
+}
+.card__info__nickname, .users__card__info__nickname {
+  color: #65b1f8;
+  font-weight: bold;
+}
+.card__info__time {
+  color: #999;
+  margin-left: 2px;
+}
+.card__info__btns {
+  position: absolute;
+  right: 10px;
+}
+.card__info__btns a {
+  text-decoration: none;
+  color: #69b1f5;
+  margin: 0px 2px;
+}
+.card__comment {
+  margin-top: 4px;
+  white-space: pre-line;
+  word-break: break-all;
+}
+.page, .paginator {
+  text-align: center;
+}
+.paginator {
+  margin-top: 20px;
+}
+.paginator a {
+  font-size: 1rem;
+  text-decoration: none;
+  color: #69b1f5;
+  border: 1px solid #69b1f5;
+  border-radius: 4px;
+  padding: 10px;
+  transition: all 0.2s;
+}
+.paginator a:hover {
+  background-color: #69b1f5;
+  border: 1px solid #69b1f5;
+  color: #fff;
+}
+
+/* 後台 */
+.users__card__about {
+  max-width: 480px; 
+  margin-top: 4px;
+  color: #555;
+}
+.users__card__about span{
+  margin-right: 20px;
+}
+.users__card__about__dropdown-form {
+  margin-top: 4px;
+}
+.users__card__about__dropdown-form button {
+  height: 30px;
+  padding: 4px;
+  border: 1px solid #ccc;
+  color: #555;
+  background: #fff;
+}
+.users__card__about__dropdown {
+  height: 30px;
+  border: 1px solid #ccc;
+  color: #555;
+  margin-right: 8px;
+}
+.users__card__info__btn {
+  padding: 4px;
+  border: 1px solid #ccc;
+  color: #555;
+  position: absolute;
+  right: 10px;
+}
+.users__card__about__dropdown:hover, .users__card__about__dropdown-form button:hover, .users__card__info__btn:hover {
+  cursor: pointer;
+}
+.users__card__about__role {
+  display: inline-block;
+  min-width: 80px;
+}
+
+@media (max-width: 768px) {
+  body {
+    font-size: 14px;
+  }
+  .board {
+    padding: 0 20px 20px;
+    margin: 10px auto;
+  }
+  .board__title {
+    margin-top: 30px;
+  }
+  .board__nav {
+    position: relative;
+    display: flex;
+    justify-content: center;
+  }
+  .board__nav a {
+    padding: 6px 12px;
+  }
+  .card__avatar {
+    min-width: 40px;
+    width: 40px;
+    height: 40px;
+  }
+  .card__info__nickname, .card__info__time {
+    display: block;
+  }
+  .card__info__btns {
+    top: 0;
+    right: 0;
+  }
+}
+@media (max-width: 280px) {
+  .board__nav a {
+    font-size: 0.8rem;
+    padding: 6px 12px;
+  }
+  .card__info {
+    max-width: 120px;
+  }
+}
