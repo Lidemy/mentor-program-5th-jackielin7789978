@@ -14,103 +14,10 @@
   <script src="utils.js"></script>
   <!-- JS 程式碼 -->
   <script>
-    function getComments (site, lastID, cb) {
-      let URL = `http://mentor-program.co/mtr04group1/jackie/week12/hw1/api_comments.php?site=${site}`
-      if (lastID) {
-        URL += `&lastID=${lastID}`
-      }
-      $.ajax({
-        type: 'GET',
-        url: URL,
-        success: function(resp) {
-          const comments = resp.comments
-          for (let comment of comments) {
-            $('.cards').append(`
-            <div class="container mt-4">
-              <div class="row">
-                <div class="col-md-8 offset-md-2">
-                <div class="card">
-                  <div class="card-header">
-                    @${escapeXSS(comment.nickname)}
-                  </div>
-                  <div class="card-body">
-                    <p class="card-text break">${escapeXSS(comment.content)}</p>
-                  </div>
-                </div>
-                </div>
-              </div>
-            </div>
-            `) 
-          }
-          cb(comments)
-        },
-        error: function(resp) {
-          console.log(resp.msg)
-        }
-      })
-    }
-
-    function escapeXSS(str) {
-      return str
-      .replace(/&/g, "&amp;")
-      .replace(/</g, "&lt;")
-      .replace(/>/g, "&gt;")
-      .replace(/"/g, "&quot;")
-      .replace(/'/g, "&#039;");
-    }
-  </script>
-  <script>
-    // 串接顯示留言 API
-    // $(document).ready( () => {
-    //   const site = 'test'
-    //   $.ajax({
-    //     type: 'GET',
-    //     url: 'api_total_comments?site=' + site,
-    //     success: function(resp) {
-    //       // 設定頁數和 offset
-    //       let page = 1 
-    //       const commentsPerPage = 5
-    //       let totalCommentsNum = resp
-    //       let totalPages = null;
-    //       if (totalCommentsNum % commentsPerPage === 0) {
-    //         totalPages = Math.floor(totalCommentsNum / commentsPerPage)
-    //       } else {
-    //         totalPages = Math.floor(totalCommentsNum / commentsPerPage) + 1
-    //       }
-    //       let lastID = null
-    //       if (totalCommentsNum > 5) {
-    //         $('#btn-more-container').append(`<button id="btn-more" type="button" class="btn btn-outline-secondary btn-lg">載入更多</button>`)
-    //       }
-        //   getComments(site, null, (comments) => {
-        //     const length = comments.length
-        //     lastID = comments[length - 1].id
-        //     $('#btn-more').on('click', () => {
-        //       page ++
-        //       if (page === totalPages) {
-        //         getComments(site, lastID, (comments) => {
-        //           const length = comments.length
-        //           lastID = comments[length - 1].id
-        //         })
-        //         $('#btn-more').hide()
-        //       } else {
-        //         getComments(site, lastID, (comments) => {
-        //           const length = comments.length
-        //           lastID = comments[length - 1].id
-        //         })
-        //       }
-        //     })
-        //   })
-        // },
-    //     error: function() {
-    //       alert('系統不穩定')
-    //       return
-    //     }
-    //     });
-    //   })
     $(document).ready( () => {
       const site = 'test'
       getTotalComments(site, (commentsNum) => {
-        // 設定頁數和 offset
+        // 設定起始頁數 & 取得所有留言數量
         let page = 1 
         const commentsPerPage = 5
         let totalCommentsNum = commentsNum
@@ -124,6 +31,7 @@
         if (totalCommentsNum > 5) {
           $('#btn-more-container').append(`<button id="btn-more" type="button" class="btn btn-outline-secondary btn-lg">載入更多</button>`)
         }
+        // call 取得留言 API
         getComments(site, null, (comments) => {
           const length = comments.length
           lastID = comments[length - 1].id
@@ -144,32 +52,17 @@
           })
         })
       })
-    })
-
-    // 串接新增留言 API
-    $(document).ready( () => {
+      // 表單送出後 call 新增留言 API
       $('#comment-form').submit( (e) => {
         e.preventDefault()
         $nickname = $('#nickname').val()
         $content = $('#textarea').val()
-        $.ajax({
-          type: 'POST',
-          url: 'http://mentor-program.co/mtr04group1/jackie/week12/hw1/api_add_comment.php',
-          data: {
-            "nickname": $nickname,
-            "content": $content,
-            "site": 'test'
-          }
-        }).done( (data) => {
-          if (!data.ok) {
-            alert('暱稱和留言不得留空')
-            return
-          }
-
-          $('#nickname').val('')
-          $('#textarea').val('')
-          location.reload()
-        })
+        const commentData = {
+          "nickname": $nickname,
+          "content": $content,
+          "site": 'test'
+        }
+        addComment(commentData)
       })
     })
   </script>
