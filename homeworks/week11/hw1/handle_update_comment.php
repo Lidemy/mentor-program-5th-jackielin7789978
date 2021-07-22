@@ -23,18 +23,13 @@
   $page = $_POST['page'];
   $sql = null;
   // 根據角色下不同的 sql
-  if (is_admin($user)) {
+  if (is_admin($user) || is_comment_author($user, $id)) {
     $sql = "update jackie_comments set comment=? where id=?";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param('si', $comment, $id);
+    $result = $stmt->execute();
   } else {
-    $sql = "update jackie_comments set comment=? where id=? and username=?";
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param('sis', $comment, $id, $username);
-  }
-  $result = $stmt->execute();
-  if (!$result) {
-    die($conn->error);
+    die("不要亂動別人的東西好不好");
   }
 
   header("Location: index.php?page={$page}");
