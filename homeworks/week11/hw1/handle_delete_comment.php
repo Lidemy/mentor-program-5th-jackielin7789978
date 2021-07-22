@@ -14,18 +14,13 @@
   $username = $_SESSION['username'];
   $user = get_user_from_username($username);
 
-  if (is_admin($user)) {
+  if (is_admin($user) || is_comment_author($user, $id)) {
     $sql = "update jackie_comments set is_deleted=1 where id=?";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param('i', $id);
+    $result = $stmt->execute();
   } else {
-    $sql = "update jackie_comments set is_deleted=1 where id=?";
-      $stmt = $conn->prepare($sql);
-      $stmt->bind_param('i', $id);
-  }
-  $result = $stmt->execute();
-  if (!$result) {
-    die($conn->error);
+    die("不要亂動別人的東西好不好");
   }
 
   header("Location: index.php");

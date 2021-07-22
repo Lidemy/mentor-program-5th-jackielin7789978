@@ -16,8 +16,8 @@
     return $row = $result->fetch_assoc();
   }
 
-  // action: view_page, add, edit&delete 
-  function has_permission($user, $action, $comment) {
+  // action: view_page, add
+  function has_permission($user, $action) {
     if ($user['role'] === "管理員") {
       return true;
     }
@@ -26,13 +26,22 @@
       return false;
     }
 
-    if ($action === "edit&delete") {
-      return $user['username'] === $comment['username'];
-    }
-
     if ($action === "add") {
       return $user['role'] !== "停權使用者";
     }
+  }
+  function is_comment_author($user, $id) {
+    global $conn;
+    $sql = "select username from jackie_comments where id=?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param('s', $id);
+    $result = $stmt->execute();
+    $result = $stmt->get_result();
+    $row = $result->fetch_assoc();
+    if ($user['username'] === $row['username']) {
+      return true;
+    }
+    return false;
   }
 
   function is_admin($user) {

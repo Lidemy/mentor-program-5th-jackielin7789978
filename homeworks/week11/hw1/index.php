@@ -111,7 +111,7 @@
               <?php echo escape($row['created_at']); ?>
             </span>
             <!-- 查看使用者有無編輯和刪除權限 -->
-            <?php if (!empty($username) && has_permission($user, 'edit&delete', $row)) { ?>
+            <?php if (!empty($username) && is_comment_author($user, $row["id"])) { ?>
               <span class="card__info__btns">
                 <a href="update_comment.php?id=<?php echo $row['id']; ?>&page=<?php echo escape($page);?>">編輯</a>
                 <a href="handle_delete_comment.php?id=<?php echo $row['id']?>">刪除</a>
