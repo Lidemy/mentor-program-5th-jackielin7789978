@@ -23,6 +23,7 @@
   "devDependencies": {
     "@lidemy/eslint-config-lidemy": "^1.0.0",
     "eslint": "^7.23.0",
+    "eslint-config-jquery": "^3.0.0",
     "eslint-plugin-import": "^2.22.1",
     "eslint-plugin-jsx-a11y": "^6.4.1",
     "husky": "^6.0.0",
@@ -138,6 +139,7 @@
     "is-unicode-supported": "^0.1.0",
     "isarray": "^1.0.0",
     "isexe": "^2.0.0",
+    "jquery": "^3.6.0",
     "js-tokens": "^4.0.0",
     "js-yaml": "^3.14.1",
     "json-parse-even-better-errors": "^2.3.1",
