@@ -1,0 +1,54 @@
+@import "_var";
+
+%post {
+  background: $color-background;
+  width: 100%;
+  max-width: 920px;
+  margin: 0 auto;
+  margin-bottom: 20px;
+  position: relative;
+  bottom: 60px;
+  padding: 10px;
+}
+%card {
+  border: $border-primary;
+  padding: 26px;
+  position: relative;
+  margin-bottom: 30px;
+}
+%card__title {
+  text-decoration: none;
+  color: $color-text-primary;
+  font-size: $fz-3;
+  font-weight: bold;
+}
+%card__info {
+  background: $color-info-bg;
+  color: $color-text-secondary;
+  font-size: $fz-4;
+  margin: 10px auto 10px;
+  padding: 10px;
+}
+%card__content {
+  font-size: 1rem;
+  color: $color-text-primary;
+  line-height: $fz-4;
+  white-space: pre-line;
+}
+@mixin btn($type) {
+  text-decoration: none;
+  background: $color-background;
+  color: $color-text-primary;
+  border: $border-primary;
+  @if $type == 'small' {
+    padding: 5px 10px;
+  } @else {
+    padding: 8px 16px;
+  }
+}
+@mixin flex($direction, $justify, $align) {
+  display: flex;
+  flex-direction: $direction;
+  justify-content: $justify;
+  align-items: $align;
+}
