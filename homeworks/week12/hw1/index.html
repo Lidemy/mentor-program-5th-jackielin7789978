@@ -15,40 +15,34 @@
   <script>
     $(document).ready(() => {
       const site = 'test'
-      getTotalComments(site, (commentsNum) => {
+      // call 取得留言 API
+      getComments(site, null, (comments, total) => {
         // 設定起始頁數 & 取得所有留言數量
         let page = 1 
         const commentsPerPage = 5
-        let totalCommentsNum = commentsNum
+        const totalCommentsNum = total
         let totalPages = null
         if (totalCommentsNum % commentsPerPage === 0) {
           totalPages = Math.floor(totalCommentsNum / commentsPerPage)
         } else {
           totalPages = Math.floor(totalCommentsNum / commentsPerPage) + 1
         }
-        let lastID = null
         if (totalCommentsNum > 5) {
           $('#btn-more-container').append(`<button id="btn-more" type="button" class="btn btn-outline-secondary btn-lg">載入更多</button>`)
         }
-        // call 取得留言 API
-        getComments(site, null, (comments) => {
-          const length = comments.length
-          lastID = comments[length - 1].id
-          $('#btn-more').on('click', () => {
-            page ++
-            if (page === totalPages) {
-              getComments(site, lastID, (comments) => {
-                const length = comments.length
-                lastID = comments[length - 1].id
-              })
-              $('#btn-more').hide()
-            } else {
-              getComments(site, lastID, (comments) => {
-                const length = comments.length
-                lastID = comments[length - 1].id
-              })
-            }
-          })
+        lastID = comments[comments.length - 1].id
+        $('#btn-more').on('click', () => {
+          page ++
+          if (page === totalPages) {
+            getComments(site, lastID, (comments) => {
+              lastID = comments[comments.length - 1].id
+            })
+            $('#btn-more').hide()
+          } else {
+            getComments(site, lastID, (comments) => {
+              lastID = comments[comments.length - 1].id
+            })
+          }
         })
       })
       // 表單送出後 call 新增留言 API
@@ -62,11 +56,29 @@
           "site": 'test'
         }
         addComment(commentData)
+        appendComment('prepend', template, commentData)
       })
     })
     // function 區
+    let baseURL = 'http://mentor-program.co/mtr04group1/jackie/week12/hw1'
+    let template = `
+      <div class="container mt-4">
+        <div class="row">
+          <div class="col-md-8 offset-md-2">
+          <div class="card">
+            <div class="card-header">
+              @nickname
+            </div>
+            <div class="card-body">
+              <p class="card-text break">content</p>
+            </div>
+          </div>
+          </div>
+        </div>
+      </div>
+    `
     function getComments(site, lastID, cb) {
-      let URL = `http://mentor-program.co/mtr04group1/jackie/week12/hw1/api_comments.php?site=${site}`
+      let URL = `${baseURL}/api_comments.php?site=${site}`
       if (lastID) {
         URL += `&lastID=${lastID}`
       }
@@ -75,25 +87,12 @@
         url: URL,
         success: (resp) => {
           const { comments } = resp
-          for (const comment of comments) {
-            $('.cards').append(`
-              <div class="container mt-4">
-                <div class="row">
-                  <div class="col-md-8 offset-md-2">
-                  <div class="card">
-                    <div class="card-header">
-                      @${escapeXSS(comment.nickname)}
-                    </div>
-                    <div class="card-body">
-                      <p class="card-text break">${escapeXSS(comment.content)}</p>
-                    </div>
-                  </div>
-                  </div>
-                </div>
-              </div>
-            `)
+          console.log(comments[0])
+          const { total } = resp
+          for (let i = 0; i<comments.length; i++) {
+            appendComment('append', template, comments[i])
           }
-          cb(comments)
+          cb(comments, total)
         },
         error: (resp) => {
           console.log(resp.msg)
@@ -101,48 +100,25 @@
       })
     }
 
-    function getTotalComments(site, cb) {
-      $.ajax({
-        type: 'GET',
-        url: `http://mentor-program.co/mtr04group1/jackie/week12/hw1/api_total_comments.php?site=${site}`,
-        success(resp) {
-          cb(resp)
-        },
-        error() {
-          alert('系統不穩定')
-        }
-      })
-    }
-
     function addComment(commentData) {
       $.ajax({
         type: 'POST',
-        url: 'http://mentor-program.co/mtr04group1/jackie/week12/hw1/api_add_comment.php',
+        url: `${baseURL}/api_add_comment.php`,
         data: commentData
       }).done((data) => {
         if (!data.ok) {
           alert('暱稱和留言不得留空')
           return
         }
-        $('#nickname').val('')
-        $('#textarea').val('')
-        $('.cards').prepend(`
-          <div class="container mt-4">
-            <div class="row">
-              <div class="col-md-8 offset-md-2">
-              <div class="card">
-                <div class="card-header">
-                  @${escapeXSS(commentData.nickname)}
-                </div>
-                <div class="card-body">
-                  <p class="card-text break">${escapeXSS(commentData.content)}</p>
-                </div>
-              </div>
-              </div>
-            </div>
-          </div>
-        `)
       })
+    }
+
+    function appendComment(method, template, comment) {
+      if (method === 'prepend') {
+        $('.cards').prepend(template.replace('nickname', escapeXSS(comment.nickname)).replace('content', escapeXSS(comment.content)))
+      } else if (method === 'append') {
+        $('.cards').append(template.replace('nickname', escapeXSS(comment.nickname)).replace('content', escapeXSS(comment.content)))
+      }
     }
 
     function escapeXSS(str) {

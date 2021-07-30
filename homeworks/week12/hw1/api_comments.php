@@ -19,12 +19,12 @@
   // 抓取留言
   $site = $_GET["site"];
   if (empty($_GET["lastID"])) {
-    $sql = "select * from jackie_board_comments where site=? order by id desc limit 5";
+    $sql = "SELECT * FROM jackie_board_comments WHERE site=? ORDER BY id desc LIMIT 5";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param('s', $site);
   } else {
     $last_id = $_GET["lastID"];
-    $sql = "select * from jackie_board_comments where site=? and id<? order by id desc limit 5";
+    $sql = "SELECT * FROM jackie_board_comments WHERE site=? AND id<? ORDER BY id desc LIMIT 5";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param('si', $site, $last_id);
   }
@@ -49,10 +49,18 @@
       "created_at" => $row["created_at"]
     ));
   }
+  // 取得總留言數
+  $sql = "SELECT * FROM jackie_board_comments WHERE site=?";
+  $stmt = $conn->prepare($sql);
+  $stmt->bind_param('s', $site);
+  $result = $stmt->execute();
+  $result = $stmt->get_result();
+  $total = $result->num_rows;
   $json = array(
     "ok" => true,
     "comments" => $comments,
-    "msg" => "SUCCEEDED"
+    "msg" => "SUCCEEDED",
+    "total" => $total
   );
   $response = json_encode($json);
   echo $response;

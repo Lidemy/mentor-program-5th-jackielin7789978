@@ -23,7 +23,7 @@
   $nickname = $_POST["nickname"];
   $content = $_POST["content"];
 
-  $sql = "insert into jackie_board_comments(site, nickname, content) values(?, ?, ?)";
+  $sql = "INSERT INTO jackie_board_comments(site, nickname, content) VALUES(?, ?, ?)";
   $stmt = $conn->prepare($sql);
   $stmt->bind_param('sss', $site, $nickname, $content);
   $result = $stmt->execute();

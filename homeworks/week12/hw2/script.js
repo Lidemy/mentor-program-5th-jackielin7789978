@@ -73,9 +73,7 @@ $(document).ready(() => {
       taskCard.addClass('pending')
       btns.removeClass('text-white border-light')
       // 如果沒有已完成項目，就隱藏 clear completed 按鈕
-      if (!checkHasCompleted()) {
-        $('#btn-clear').addClass('d-none')
-      }
+      showHideClearBtn()
     } else {
       taskTitle.addClass('text-decoration-line-through')
       taskCard.addClass('bg-secondary text-white completed')
@@ -83,9 +81,7 @@ $(document).ready(() => {
       btns.addClass('text-white border-light')
       $('#btn-clear').removeClass('d-none')
       // 如果有已完成項目，就顯示 clear completed 按鈕
-      if (checkHasCompleted()) {
-        $('#btn-clear').removeClass('d-none')
-      }
+      showHideClearBtn()
     }
   })
 
@@ -106,9 +102,7 @@ $(document).ready(() => {
   // 清空已完成項目
   $('#btn-clear').on('click', () => {
     $('li[class~="completed"]').remove()
-    if (!checkHasCompleted()) {
-      $('#btn-clear').addClass('d-none')
-    }
+    showHideClearBtn()
     if ($('#putCardHere').find('li').length === 0) {
       $('.card').hide()
     }
@@ -137,11 +131,12 @@ function toggleVisibility(status, visibility) {
   }
 }
 
-function checkHasCompleted() {
+function showHideClearBtn() {
   if (!$('li[class~="completed"]').length) {
-    return false
+    $('#btn-clear').addClass('d-none')
+  } else {
+    $('#btn-clear').removeClass('d-none')
   }
-  return true
 }
 
 function escapeXSS(str) {
