@@ -23,15 +23,16 @@ const apiFunctions = {
       }
     })
   },
-  addComment(apiURL, commentData, cb) {
+  addComment(apiURL, site, commentData) {
     $.ajax({
       type: 'POST',
       url: `${apiURL}/api_add_comment.php`,
       data: commentData
-    }).done((data) => {
-      if (!data.ok) {
+    }).done((resp) => {
+      if (!resp.ok) {
         alert('暱稱和留言不得留空')
-        return cb(data.ok)
+      } else {
+        utils.appendComment(site, 'prepend', commentData)
       }
     })
   }

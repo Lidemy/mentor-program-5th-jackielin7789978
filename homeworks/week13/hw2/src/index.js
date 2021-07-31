@@ -1,9 +1,9 @@
 /* eslint-disable import/prefer-default-export */
+import 'bootstrap'
 import './style.sass'
 import $ from 'jquery'
 import apiFunctions from './api'
 import templates from './templates'
-import utils from './utils'
 
 let apiURL = ''
 let site = ''
@@ -54,12 +54,10 @@ export function init(options) {
     const commentData = {
       nickname,
       content,
-      site: 'test'
+      site
     }
-    apiFunctions.addComment(apiURL, commentData, (ok) => {
-      if (ok) {
-        utils.appendComment(containerSelector, 'prepend', commentData)
-      }
-    })
+    apiFunctions.addComment(apiURL, site, commentData)
+    $('#nickname').val('')
+    $('#textarea').val('')
   })
 }
