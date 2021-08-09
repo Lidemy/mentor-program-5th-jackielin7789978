@@ -1,0 +1,31 @@
+@import "_var";
+
+%card {
+  border: $border-primary;
+  padding: 26px;
+  position: relative;
+  margin-bottom: 30px;
+}
+%card__content {
+  font-size: 1rem;
+  color: $color-text-primary;
+  line-height: $fz-4;
+  white-space: pre-line;
+}
+@mixin btn($type) {
+  text-decoration: none;
+  background: $color-background;
+  color: $color-text-primary;
+  border: $border-primary;
+  @if $type == 'small' {
+    padding: 5px 10px;
+  } @else {
+    padding: 8px 16px;
+  }
+}
+@mixin flex($direction, $justify, $align) {
+  display: flex;
+  flex-direction: $direction;
+  justify-content: $justify;
+  align-items: $align;
+}

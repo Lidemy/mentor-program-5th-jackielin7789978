@@ -1,0 +1,157 @@
+@import "_layouts";
+@import "_mixins";
+@import "_var";
+
+body {
+  font-family: $font;
+  position: relative;
+  font-size: 14px;
+  min-height: 100vh;
+}
+p {
+  margin: 0;
+}
+.wrapper {
+  @include flex(row, space-between, center);
+  max-width: 1720px;
+  width: 90%;
+  line-height: 80px;
+  margin: auto;
+}
+.hide {
+  display: none;
+}
+.error {
+  color: $color-error;
+}
+#todd {
+  margin: auto;
+  width: 60%;
+  display: block;
+  margin-top: 40px;
+}
+.posts, .post, .list {
+  background: $color-background;
+  width: 100%;
+  max-width: 920px;
+  margin: 0 auto;
+  margin-bottom: 20px;
+  position: relative;
+  bottom: 60px;
+  padding: 10px;
+}
+.posts__card {
+  @extend %card;
+  height: 260px;
+  overflow: hidden;
+}
+.post__card {
+  @extend %card;
+}
+.list__card {
+  @include flex(row, space-between, center);
+  border-bottom: $border-primary;
+  padding: 20px;
+  &__info__time {
+    color: $color-info-text;
+    margin-right: 10px;
+  }
+  &__info__btn {
+    @include btn('small');
+  }
+}
+.posts__card__title, .post__card__title, .list__card__title {
+  text-decoration: none;
+  color: $color-text-primary;
+  font-size: $fz-3;
+  font-weight: bold;
+}
+.posts__card__info, .post__card__info {
+  background: $color-info-bg;
+  color: $color-text-secondary;
+  font-size: $fz-4;
+  margin: 10px auto 10px;
+  padding: 10px;
+}
+.posts__card__content {
+  @extend %card__content;
+  &__wrapper {
+    height: 140px;
+    overflow: hidden;
+  }
+}
+.post__card__content {
+  @extend %card__content;
+}
+.posts__card {
+  &__edit-btn {
+    @include btn('small');
+    position: absolute;
+    right: 16px;
+    top: 16px;
+  }
+  &__more-btn {
+    @include btn('big');
+    position: absolute;
+    bottom: 30px;
+    left: 20px;
+  }
+}
+.page {
+  position: absolute;
+  bottom: 36px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  color: $color-text-secondary;
+  &__info {
+    margin-bottom: 14px;
+  }
+  &__paginator a {
+    @include btn('big');
+  }
+}
+.ck-editor__editable_inline {
+  min-height: 300px;
+  margin-bottom: 20px;
+}
+.editor {
+  margin: 0 auto;
+  width: 100%;
+  max-width: 600px;
+  padding: 10px;
+  position: relative;
+  bottom: 60px;
+  background: $color-background;
+  &__form {
+    border: $border-primary;
+    padding: 20px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    input[name=title] {
+      display: block;
+      width: 90%;
+      padding: 6px;
+      margin-bottom: 20px;
+      border: $border-primary;
+      &::placeholder {
+        color: $color-text-primary;
+      }
+    }
+    input[type=submit] {
+      @include btn('big');
+      align-self: flex-end;
+      &:hover {
+        cursor: pointer;
+      }
+    }
+    &__title {
+      font-size: $fz-2;
+      margin-bottom: 20px;
+    }
+    textarea {
+      white-space: pre-line;
+    }
+  }
+}

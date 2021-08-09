@@ -208,6 +208,7 @@
     "restore-cursor": "^3.1.0",
     "rimraf": "^3.0.2",
     "rxjs": "^6.6.7",
+    "sass": "^1.36.0",
     "semver": "^5.7.1",
     "semver-compare": "^1.0.0",
     "shebang-command": "^2.0.0",

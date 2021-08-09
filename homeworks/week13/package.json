@@ -1,0 +1,21 @@
+{
+  "name": "week13",
+  "version": "1.0.0",
+  "description": "請用這週學到的 CSS 預處理器重新改寫之前第十一週做的陽春部落格的 CSS 檔案。作業只需要把寫好的 SCSS 檔案複製過來就好，不需要放其他 PHP 的檔案。",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "gulp": "^4.0.2"
+  },
+  "dependencies": {
+    "gulp-babel": "^8.0.0",
+    "gulp-clean-css": "^4.3.0",
+    "gulp-rename": "^2.0.0",
+    "gulp-sass": "^5.0.0",
+    "gulp-uglify": "^3.0.2"
+  }
+}
