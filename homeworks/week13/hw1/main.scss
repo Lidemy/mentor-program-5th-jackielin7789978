@@ -30,14 +30,15 @@ p {
   display: block;
   margin-top: 40px;
 }
-.posts {
-  @extend %post;
-}
-.post {
-  @extend %post;
-}
-.list {
-  @extend %post;
+.posts, .post, .list {
+  background: $color-background;
+  width: 100%;
+  max-width: 920px;
+  margin: 0 auto;
+  margin-bottom: 20px;
+  position: relative;
+  bottom: 60px;
+  padding: 10px;
 }
 .posts__card {
   @extend %card;
@@ -59,20 +60,18 @@ p {
     @include btn('small');
   }
 }
-.posts__card__title {
-  @extend %card__title;
+.posts__card__title, .post__card__title, .list__card__title {
+  text-decoration: none;
+  color: $color-text-primary;
+  font-size: $fz-3;
+  font-weight: bold;
 }
-.post__card__title {
-  @extend %card__title;
-}
-.list__card__title {
-  @extend %card__title;
-}
-.posts__card__info {
-  @extend %card__info;
-}
-.post__card__info {
-  @extend %card__info;
+.posts__card__info, .post__card__info {
+  background: $color-info-bg;
+  color: $color-text-secondary;
+  font-size: $fz-4;
+  margin: 10px auto 10px;
+  padding: 10px;
 }
 .posts__card__content {
   @extend %card__content;
