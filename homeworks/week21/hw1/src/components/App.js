@@ -145,7 +145,8 @@ export default function App() {
       {
         id,
         taskname: inputVal,
-        isDone: false
+        isDone: false,
+        isBeingEdited: false
       },
       ...todos
     ])
