@@ -54,8 +54,10 @@ export default function Modal() {
         <StartGame
           onClick={() => {
             setIsPlaying(true)
-            isSoundOn && playClicked()
-            isSoundOn && playStart()
+            if (isSoundOn) {
+              playClicked()
+              playStart()
+            }
           }}
         >
           Start Game
@@ -66,9 +68,11 @@ export default function Modal() {
           <EndingMsg>Winner is {winner}</EndingMsg>
           <Restart
             onClick={() => {
-              isSoundOn && playClicked()
+              if (isSoundOn) {
+                playClicked()
+                playStart()
+              }
               setIsPlaying(true)
-              isSoundOn && playStart()
               setHistory(history.slice(0, 1))
               setSteps(0)
               setIsBlackNext(true)

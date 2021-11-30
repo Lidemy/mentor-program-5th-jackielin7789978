@@ -1,4 +1,6 @@
 import styled from 'styled-components'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faGithub } from '@fortawesome/free-brands-svg-icons'
 
 const FooterContainer = styled.div`
   position: absolute;
@@ -28,6 +30,13 @@ export default function Footer() {
         rel='noreferrer'
       >
         Jackie Lin
+      </a>
+      <a
+        href='https://github.com/jackielin7789978/react-gomoku'
+        target='_blank'
+        rel='noreferrer'
+      >
+        <FontAwesomeIcon icon={faGithub} />
       </a>
     </FooterContainer>
   )
