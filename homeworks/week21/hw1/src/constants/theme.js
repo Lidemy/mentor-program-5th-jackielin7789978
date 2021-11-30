@@ -1,4 +1,4 @@
-export const Theme = {
+const COLOR_THEME = {
   light: {
     page: '#f5f5f5',
     card: '#fff',
@@ -34,3 +34,4 @@ export const Theme = {
     checked: 'rgba(120, 120, 120, 0.1)'
   }
 }
+export default COLOR_THEME

@@ -1,12 +1,13 @@
+/* eslint-disable multiline-ternary */
 import { useState } from 'react'
-import { ThemeProvider } from 'styled-components'
-import { Theme } from '../constants/style'
-import styled from 'styled-components'
-import Todo from './Todo'
-import Footer from './Footer'
+import styled, { ThemeProvider } from 'styled-components'
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faMoon } from '@fortawesome/free-solid-svg-icons'
-import { faSun } from '@fortawesome/free-solid-svg-icons'
+import { faMoon, faSun } from '@fortawesome/free-solid-svg-icons'
+
+import Footer from './Footer'
+import COLOR_THEME from '../constants/theme'
+import Todo from './Todo'
 
 const MainArea = styled.div`
   min-height: calc(100vh - 50px);
@@ -117,7 +118,7 @@ const Icon = styled(FontAwesomeIcon)`
 
 let id = 3
 export default function App() {
-  const [theme, setTheme] = useState(true)
+  const [theme, setTheme] = useState('light')
   const [filter, setFilter] = useState('ALL')
   const [inputVal, setInputVal] = useState('')
   const [todos, setTodos] = useState([
@@ -154,18 +155,16 @@ export default function App() {
     id++
   }
   const handleClearCompleted = () => {
-    const data = todos.filter((todo) => {
-      return todo.isDone === false
-    })
+    const data = todos.filter((todo) => todo.isDone === false)
     setTodos(data)
   }
 
   return (
-    <ThemeProvider theme={theme ? Theme.dark : Theme.light}>
+    <ThemeProvider theme={COLOR_THEME[theme]}>
       <MainArea>
         <Circle
           onClick={() => {
-            setTheme(!theme)
+            setTheme(theme === 'light' ? 'dark' : 'light')
           }}
         >
           {theme ? (
